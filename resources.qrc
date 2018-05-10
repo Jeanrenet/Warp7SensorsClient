@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Images/compass.svg</file>
+        <file>Images/compass2.jpg</file>
+        <file>Images/plane.png</file>
+    </qresource>
+</RCC>

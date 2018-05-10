@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>AccelerometerPage.qml</file>
+        <file>MagnetometerPage.qml</file>
+        <file>GyroscopePage.qml</file>
+        <file>BarometerPage.qml</file>
+    </qresource>
+</RCC>
