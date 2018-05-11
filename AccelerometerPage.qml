@@ -15,8 +15,7 @@ Item {
             samples: 1
             horizontalOffset: -Main.acc_x * 2
             verticalOffset: Main.acc_y*2
-            color: Main.acc_y <0 ? "red": "blue"
-
+            color: Main.acc_y <0 ? "#80FF0000": "#800000FF"
             source: ball
             rotation : 180
             scale: Main.acc_z >= 0 ? (Main.acc_z/ 10) + 1: 1 - (Main.acc_z/ 10)
