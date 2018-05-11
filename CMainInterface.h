@@ -3,19 +3,27 @@
 
 #include <QObject>
 #include <QTimer>
+#include <QQueue>
+#include <QtCharts/QAbstractSeries>
+#include <QtCharts/QSplineSeries>
 #include <QtSensors/QMagnetometer>
 #include <QtSensors/QAccelerometer>
+#include <QtSensors/QPressureSensor>
+
+const qint32 MAX_QUEUE_LENGTH = 200;
+
+using namespace QtCharts;
 
 class CMainInterface : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(qreal mag_x READ mag_x NOTIFY magnetometerChanged)
-    Q_PROPERTY(qreal mag_y READ mag_y NOTIFY magnetometerChanged)
-    Q_PROPERTY(qreal mag_z READ mag_z NOTIFY magnetometerChanged)
+    Q_PROPERTY(qreal mag_x READ mag_x NOTIFY dataChanged)
+    Q_PROPERTY(qreal mag_y READ mag_y NOTIFY dataChanged)
+    Q_PROPERTY(qreal mag_z READ mag_z NOTIFY dataChanged)
 
-    Q_PROPERTY(qreal acc_x READ acc_x NOTIFY accelerometerChanged)
-    Q_PROPERTY(qreal acc_y READ acc_y NOTIFY accelerometerChanged)
-    Q_PROPERTY(qreal acc_z READ acc_z NOTIFY accelerometerChanged)
+    Q_PROPERTY(qreal acc_x READ acc_x NOTIFY dataChanged)
+    Q_PROPERTY(qreal acc_y READ acc_y NOTIFY dataChanged)
+    Q_PROPERTY(qreal acc_z READ acc_z NOTIFY dataChanged)
 
 public:
     CMainInterface();
@@ -29,9 +37,11 @@ public:
     qreal acc_y() const;
     qreal acc_z() const;
 
+    Q_INVOKABLE void    updateBarometerGraphe(QSplineSeries * series);
+    Q_INVOKABLE quint32 maxHistory();
+
 protected:
-    Q_SIGNAL void magnetometerChanged();
-    Q_SIGNAL void accelerometerChanged();
+    Q_SIGNAL void dataChanged();
 
     Q_SLOT   void caca();
     QTimer      m_timer;
@@ -46,6 +56,10 @@ private:
     qreal         m_acc_x{0};
     qreal         m_acc_y{0};
     qreal         m_acc_z{0};
+
+    QPressureSensor m_pressureSensor;
+    QQueue<qreal>   m_pressureQueue;
+
 };
 
 #endif // CMAININTERFACE_H

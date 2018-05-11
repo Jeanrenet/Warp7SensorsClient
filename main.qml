@@ -10,7 +10,7 @@ Window {
 
     SwipeView {
         id: swipeView
-        currentIndex: 0
+        currentIndex: 1
         anchors.fill: parent
         AccelerometerPage {
 

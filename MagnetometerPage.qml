@@ -28,11 +28,10 @@ Item {
                 }
             }
         }
-        GroupBox {
-            Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
-            Layout.fillWidth: true
-            Layout.fillHeight: true
             ColumnLayout {
+                Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
+                Layout.fillWidth: true
+                Layout.fillHeight: true
                 Text {
                     text: "Read X :" + Main.mag_x * 1000000;
                     font.family: "Courier"
@@ -49,6 +48,5 @@ Item {
                     font.pixelSize: 18
                 }
             }
-        }
     }
 }

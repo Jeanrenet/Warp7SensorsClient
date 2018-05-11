@@ -58,8 +58,40 @@ void CMainInterface::caca()
         m_acc_z = qrand()%20 - 10;
     }
 
-    Q_EMIT magnetometerChanged();
-    Q_EMIT accelerometerChanged();
+    QPressureReading *r2 = m_pressureSensor.reading();
+    qreal pressure;
+    if (r2)
+    {
+        pressure = r2->pressure();
+    }
+    else
+    {
+        pressure = 101325 + 150 - qrand()%300; //hectopascal
+    }
+
+    m_pressureQueue.enqueue(pressure /100.0);
+    if (m_pressureQueue.length() > MAX_QUEUE_LENGTH)
+        m_pressureQueue.dequeue();
+
+    Q_EMIT dataChanged();
+}
+
+void CMainInterface::updateBarometerGraphe(QSplineSeries *series)
+{
+    if(series)
+    {
+        series->clear();
+
+        for (qint32 i = 0; i < m_pressureQueue.length() ; ++i)
+        {
+            series->append(i, m_pressureQueue.at(i));
+        }
+    }
+}
+
+quint32 CMainInterface::maxHistory()
+{
+    return MAX_QUEUE_LENGTH;
 }
 
 qreal CMainInterface::acc_z() const

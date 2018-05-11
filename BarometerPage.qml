@@ -2,21 +2,44 @@ import QtQuick 2.9
 import QtSensors 5.9
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.2
-import QtGraphicalEffects 1.0
-import QtQuick.Controls.Styles 1.4
-import QtQuick.Extras 1.4
+import QtQuick.Window 2.2
+import QtCharts 2.2
 
 Item {
-    property real outerRadius : 0
+    Rectangle {
+        id: playground
+        anchors.fill: parent
 
-    CircularGauge {
-        style: CircularGaugeStyle {
-            needle: Rectangle {
-                y: outerRadius * 0.15
-                implicitWidth: outerRadius * 0.03
-                implicitHeight: outerRadius * 0.9
-                antialiasing: true
-                color: Qt.rgba(0.66, 0.3, 0, 1)
+        ChartView {
+            id: chartView
+            antialiasing: true
+            anchors.fill: parent
+
+            Connections {
+                target : Main
+                onDataChanged: {
+                    Main.updateBarometerGraphe(chartView.series(0)) // update splineseries
+                }
+            }
+
+            SplineSeries {
+                id:  splineSerie
+                useOpenGL: true
+                name: "Atmospheric Pressure"
+                axisX: ValueAxis {
+                    id: axisXLegend
+                    min: 0
+                    max: Main.maxHistory()
+                    titleText: "History"
+                    labelsFont:Qt.font({pointSize: 8})
+                }
+                axisY: ValueAxis {
+                    id: axisYLegend
+                    min: 975
+                    max: 1050
+                    titleText: "Pressure (Hectopascal)"
+                    labelsFont:Qt.font({pointSize: 8})
+                }
             }
         }
     }
