@@ -28,25 +28,25 @@ Item {
                 }
             }
         }
-            ColumnLayout {
-                Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-                Text {
-                    text: "Read X :" + Main.mag_x * 1000000;
-                    font.family: "Courier"
-                    font.pixelSize: 18
-                }
-                Text {
-                    text: "Read Y :" + Main.mag_y * 1000000;
-                    font.family: "Courier"
-                    font.pixelSize: 18
-                }
-                Text {
-                    text: "Read Z :" + Main.mag_z * 1000000;
-                    font.family: "Courier"
-                    font.pixelSize: 18
-                }
+        ColumnLayout {
+            Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            Text {
+                text: "Read X :" + Main.mag_x * 1000000;
+                font.family: "Courier"
+                font.pixelSize: 18
             }
+            Text {
+                text: "Read Y :" + Main.mag_y * 1000000;
+                font.family: "Courier"
+                font.pixelSize: 18
+            }
+            Text {
+                text: "Read Z :" + Main.mag_z * 1000000;
+                font.family: "Courier"
+                font.pixelSize: 18
+            }
+        }
     }
 }

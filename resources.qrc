@@ -2,5 +2,7 @@
     <qresource prefix="/">
         <file>Images/plane.png</file>
         <file>Images/compass.png</file>
+        <file>Images/planeGyro.svg</file>
+        <file>Images/planeGyro.png</file>
     </qresource>
 </RCC>

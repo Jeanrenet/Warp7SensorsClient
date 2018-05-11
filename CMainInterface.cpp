@@ -8,6 +8,8 @@ CMainInterface::CMainInterface()
 
     qDebug() << m_magnetometer.start();
     m_accelerometer.start();
+    m_pressureSensor.start();
+    m_gyroscope.start();
 }
 
 CMainInterface::~CMainInterface()
@@ -69,11 +71,38 @@ void CMainInterface::caca()
         pressure = 101325 + 150 - qrand()%300; //hectopascal
     }
 
+    QGyroscopeReading *r3 = m_gyroscope.reading();
+    if (r3)
+    {
+        r3->x();
+        r3->y();
+        r3->z();
+    }
+    else
+    {
+
+    }
+
     m_pressureQueue.enqueue(pressure /100.0);
     if (m_pressureQueue.length() > MAX_QUEUE_LENGTH)
         m_pressureQueue.dequeue();
 
     Q_EMIT dataChanged();
+}
+
+qreal CMainInterface::gyro_z() const
+{
+    return m_gyro_z;
+}
+
+qreal CMainInterface::gyro_y() const
+{
+    return m_gyro_y;
+}
+
+qreal CMainInterface::gyro_x() const
+{
+    return m_gyro_x;
 }
 
 void CMainInterface::updateBarometerGraphe(QSplineSeries *series)
