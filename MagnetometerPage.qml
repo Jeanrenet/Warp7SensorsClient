@@ -18,7 +18,7 @@ Item {
             antialiasing: true
             fillMode: Image.PreserveAspectFit
             clip: true
-            source: "qrc:/Images/compass2.jpg"
+            source: "qrc:/Images/compass.png"
             smooth: true
             rotation : angle
 

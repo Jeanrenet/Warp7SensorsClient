@@ -1,7 +1,6 @@
 <RCC>
     <qresource prefix="/">
-        <file>Images/compass.svg</file>
-        <file>Images/compass2.jpg</file>
         <file>Images/plane.png</file>
+        <file>Images/compass.png</file>
     </qresource>
 </RCC>

@@ -57,8 +57,6 @@ Item {
             Behavior on x {
                 NumberAnimation {
                     alwaysRunToEnd: false
-                    //This selects an easing curve to interpolate with, the default is Easing.Linear
-                    //easing.type: Easing.OutQuart
                 }
             }
         }
